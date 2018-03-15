@@ -1,0 +1,44 @@
+.landing-page h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  letter-spacing: 5px;
+  color: white;
+}
+
+.overlay {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../images/landingimage.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.description {
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.description p {
+  margin: 10px auto;
+  width: 50%;
+}
