@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import LogOut from '../logout/index';
 
 import './index.css';
 
@@ -57,7 +56,6 @@ class Navigation extends React.Component {
               onClick={event => {
                 this.toggleNav();
             }}>Register</Link>
-            <LogOut />
 					</div>
 				</div>
       </div>
