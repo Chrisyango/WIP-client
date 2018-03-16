@@ -2,15 +2,17 @@ import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
+import authReducer from './reducers/auth';
+import pictureReducer from './reducers/pictures';
 
 import {loadAuthToken} from './local-storage';
-import authReducer from './reducers/auth';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const store = createStore(
   combineReducers({
     form: formReducer,
-    auth: authReducer
+    auth: authReducer,
+    picture: pictureReducer
   }), 
   applyMiddleware(thunk));
 
