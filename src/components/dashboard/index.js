@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import requiresLogin from '../requires-login';
-import Logout from '../logout/index';
 import Pictures from '../pictures/index';
 
 class Dashboard extends React.Component {
@@ -10,10 +8,6 @@ class Dashboard extends React.Component {
   render () {
     return (
       <div>
-        <Logout />
-        <Link to={`/users/${this.props.username}`}>
-          Hello, {this.props.username}!
-        </Link>
         <Pictures />
       </div>
     )

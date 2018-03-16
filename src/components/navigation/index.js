@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import Logout from '../logout/index';
 
 import './index.css';
 
@@ -32,6 +34,23 @@ class Navigation extends React.Component {
       showNav="hideNavOverlay"
     }
 
+    let isLoggedIn = (
+      <div className="nav-content">
+        <Link to="/" onClick={event => this.toggleNav()}>Home</Link>
+        <Link to="/login" onClick={event => this.toggleNav()}>Login</Link>
+        <Link to="/register" onClick={event => this.toggleNav()}>Register</Link>
+      </div>
+    )
+    if (this.props.loggedIn) {
+      isLoggedIn = (
+        <div className="nav-content">
+          <Link to="/dashboard" onClick={event => this.toggleNav()}>Home</Link>
+          <Link to={`/users/${this.props.username}`} onClick={event => this.toggleNav()}>My Account</Link>
+          <Logout toggleNav={event => this.toggleNav()}/>
+      </div>
+      );
+    }
+    
     return (
       <div className="navigation">
         <span 
@@ -43,24 +62,19 @@ class Navigation extends React.Component {
             &#9776;
           </span>
         <div className={`${showNav}`}>
-					<div className="nav-content">
-            <Link to="/"
-              onClick={event => {
-                this.toggleNav();
-            }}>Let's GO</Link>
-            <Link to="/login"
-              onClick={event => {
-                this.toggleNav();
-            }}>Login</Link>
-            <Link to="/register"
-              onClick={event => {
-                this.toggleNav();
-            }}>Register</Link>
-					</div>
+          {isLoggedIn}
 				</div>
       </div>
     )
   }
 }
 
-export default Navigation;
+const mapStateToProps = state => {
+  const {currentUser} = state.auth;
+  return {
+    loggedIn: currentUser !== null,
+    currentUser: currentUser
+  }
+};
+
+export default connect(mapStateToProps)(Navigation);

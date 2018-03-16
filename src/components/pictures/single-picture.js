@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchSinglePicture} from '../../actions/pictures';
+import requiresLogin from '../requires-login';
 
 class SinglePicture extends React.Component {
   componentDidMount() {
@@ -28,4 +29,4 @@ const mapStateToProps = state => ({
   error: state.picture.error
 });
 
-export default connect(mapStateToProps)(SinglePicture);
+export default requiresLogin()(connect(mapStateToProps)(SinglePicture));
