@@ -23,3 +23,19 @@ ul {
 .app {
   margin: auto;
 }
+
+button {
+  width: 90px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ef4450;
+  color: #fff;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: tomato;
+}

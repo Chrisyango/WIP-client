@@ -6,6 +6,7 @@ import LandingPage from './landingpage/index';
 import Dashboard from './dashboard/index';
 import Login from './login/index';
 import Registration from './registration/index';
+import Upload from './upload/index';
 import SinglePicture from './pictures/single-picture';
 import User from './user/index';
 import {refreshAuthToken} from '../actions/auth';
@@ -48,6 +49,7 @@ class App extends React.Component {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Registration} />
+        <Route exact path="/upload" component={Upload} />
         <Route path="/pic/:id" component={SinglePicture} />
         <Route path="/users/:username" component={User} />
       </div>

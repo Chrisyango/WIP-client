@@ -13,7 +13,14 @@ export const upload = ({file, name}) => (dispatch, getState) => {
   console.log(file);
   console.log(name);
 
-  axios.post(`${API_BASE_URL}/uploads`, data)
+  axios.post({
+    url: `${API_BASE_URL}/uploads`,
+    data: data,
+    headers: {
+      // Provide our auth token as credentials
+      Authorization: `Bearer ${authToken}`
+    }
+  })
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
   .catch(err => {

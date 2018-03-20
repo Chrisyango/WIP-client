@@ -12,17 +12,18 @@ class Pictures extends React.Component {
   render() {
     const pictures = this.props.pictures.map((picture, index) => {
       return (
-      <li key={index}>
-        {picture.title}
-        <Link to={`/pic/${picture.id}`}>
-          <img src={picture.src} alt={picture.alt}/>
-        </Link>
-      </li>)
+      <div key={index} className="image">
+          <Link to={`/pic/${picture.id}`}>
+            <img src={picture.src} alt={picture.alt}/>
+          </Link>
+      </div>
+      )
     })
+
     return (
-      <ul id="pictureList">
+      <div className="image-list">
         {pictures}
-      </ul>
+      </div>
     );
   }
 }

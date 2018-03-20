@@ -10,7 +10,8 @@ class Navigation extends React.Component {
     super(props)
 
     this.state = {
-        isShowing: false
+        isShowing: false,
+        currentUser: this.props.currentUser
     }
   }
 
@@ -45,12 +46,12 @@ class Navigation extends React.Component {
       isLoggedIn = (
         <div className="nav-content">
           <Link to="/dashboard" onClick={event => this.toggleNav()}>Home</Link>
-          <Link to={`/users/${this.props.username}`} onClick={event => this.toggleNav()}>My Account</Link>
+          <Link to={`/users/${this.props.currentUser.username}`} onClick={event => this.toggleNav()}>My Account</Link>
           <Logout toggleNav={event => this.toggleNav()}/>
       </div>
       );
     }
-    
+
     return (
       <div className="navigation">
         <span 
