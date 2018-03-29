@@ -4,7 +4,7 @@ import {Link, Redirect} from 'react-router-dom';
 import LoginForm from './login-form';
 import './index.css';
 
-class Login extends React.Component {
+export class Login extends React.Component {
   render() {
     if (this.props.loggedIn) {
       return <Redirect to="/dashboard" />;
@@ -14,7 +14,7 @@ class Login extends React.Component {
       <div className="login">
         <h2>Login</h2>
         <LoginForm />
-        <p>Need an account? <Link to="/register">Register</Link></p>
+        <p>Don't have an account? <Link to="/register">Register</Link></p>
       </div>
     )
   }

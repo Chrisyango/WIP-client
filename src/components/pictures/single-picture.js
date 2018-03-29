@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchSinglePicture, updateItem} from '../../actions/pictures';
+import {Link, Redirect} from 'react-router-dom';
+import {fetchSinglePicture, updateItem, deleteItem} from '../../actions/pictures';
 import requiresLogin from '../requires-login';
 import './index.css';
 
@@ -16,7 +17,8 @@ class SinglePicture extends React.Component {
     this.state = {
       loading: true,
       comments: [{}],
-      likes: 0
+      likes: 0,
+      deleted: false
     }
   }
 
@@ -73,22 +75,44 @@ class SinglePicture extends React.Component {
     })
   }
 
+  handleDelete() {
+    this.props.dispatch(deleteItem(this.props.match.params.id))
+    .then(() => {
+      this.setState({
+        deleted: true
+      })
+    })
+  }
+
   render() {
+    if (this.state.deleted) {
+      return <Redirect to="/dashboard" />;
+    }
+
+    let deleteButton;
+    if (this.props.currentUser === this.props.singlePicture.username) {
+      deleteButton = <button onClick={event => this.handleDelete()}>Delete</button>;
+    }
     const picture = (
-      <span>
+      <span className="picture">
         <div className="image-container">
           <a href={`${this.props.singlePicture.src}`}>
             <img src={this.props.singlePicture.src} alt={this.props.singlePicture.alt}/>
           </a>
         </div>
-        <p>{this.props.singlePicture.title} by: {this.props.singlePicture.username}</p>
-        {this.props.singlePicture.likes} likes
-        <button onClick={event => this.decreaseLikes()}>
-          <i className="fas fa-thumbs-down"></i>
-        </button>
-        <button onClick={event => this.increaseLikes()}>
-          <i className="fas fa-thumbs-up"></i>
-        </button>
+        <div>
+          <p>
+            {this.props.singlePicture.title} by: <Link to={`/users/${this.props.singlePicture.username}`}> {this.props.singlePicture.username}</Link>
+          </p>
+          {this.props.singlePicture.likes} likes
+          <button onClick={event => this.decreaseLikes()}>
+            <i className="fas fa-thumbs-down"></i>
+          </button>
+          <button onClick={event => this.increaseLikes()}>
+            <i className="fas fa-thumbs-up"></i>
+          </button>
+          {deleteButton}
+        </div>
       </span>
     );
 
@@ -97,7 +121,7 @@ class SinglePicture extends React.Component {
       comments = this.props.singlePicture.comments.map((comment, index) => {
         return (
           <p key={index}>
-          {comment.username}: {comment.comment}
+            <Link to={`/users/${comment.username}`}><b>{comment.username}</b></Link>: {comment.comment}
           </p>
         );
       });

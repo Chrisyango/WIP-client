@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 import {API_BASE_URL} from '../../config'
 import {uploadPicture} from '../../actions/pictures';
 
 import requiresLogin from '../requires-login';
 import './index.css';
 
-class Upload extends React.Component {
+export class Upload extends React.Component {
   constructor(props) {
     super(props);
 
@@ -17,8 +16,7 @@ class Upload extends React.Component {
       alt: '',
       likes: 0,
       username: '',
-      comments: [],
-      uploadComplete: null
+      comments: []
     };
 
     this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -37,7 +35,7 @@ class Upload extends React.Component {
         response.json()
       .then((body) => {
         this.setState({ 
-          src: `http://localhost:8080/uploads/${body.filename}`,
+          src: `${API_BASE_URL}/uploads/${body.filename}`,
           alt: this.title.value,
         });
       })
@@ -56,16 +54,12 @@ class Upload extends React.Component {
   
   handleUpdateDatabase() {
     this.props.dispatch(uploadPicture(this.state))
-    this.setState({
-      uploadComplete: true
+    .then(() => {
+      window.location.reload();
     })
   }
 
   render() {
-    if (this.state.uploadComplete) {
-      return <Redirect to="/dashboard" />;
-    }
-
     let imageIsShowing = (
         <p>Your Image Here</p>
     )
@@ -75,7 +69,6 @@ class Upload extends React.Component {
       )
     }
     
-
     return (
       <div className="upload">
         <form onSubmit={event => {

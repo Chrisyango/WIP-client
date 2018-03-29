@@ -36,6 +36,11 @@ button {
   transition: 0.3s;
 }
 
+input {
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+
 button:hover {
   background-color: tomato;
 }

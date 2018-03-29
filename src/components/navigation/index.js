@@ -5,7 +5,7 @@ import Logout from '../logout/index';
 
 import './index.css';
 
-class Navigation extends React.Component {
+export class Navigation extends React.Component {
   constructor(props) {
     super(props)
 
@@ -29,10 +29,16 @@ class Navigation extends React.Component {
 
   render() {
     let showNav;
+    let burgerButton;
+    let closeButton;
     if (this.state.isShowing) {
       showNav="showNavOverlay"
+      burgerButton="hideBurgerButton"
+      closeButton="showCloseButton"
     } else {
       showNav="hideNavOverlay"
+      burgerButton="showBurgerButton"
+      closeButton="hideCloseButton"
     }
 
     let isLoggedIn = (
@@ -55,13 +61,21 @@ class Navigation extends React.Component {
     return (
       <div className="navigation">
         <span 
-          className="toggleNav"
+          className={`${burgerButton}`}
           onClick={event => {
             this.toggleNav();
           }}
           >
             &#9776;
-          </span>
+        </span>
+        <span
+          className={`${closeButton}`}
+          onClick={event => {
+            this.toggleNav();
+          }}
+          >
+            &#10005;
+        </span>
         <div className={`${showNav}`}>
           {isLoggedIn}
 				</div>

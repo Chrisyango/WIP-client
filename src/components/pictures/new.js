@@ -10,10 +10,15 @@ class Pictures extends React.Component {
   }
 
   render() {
-    const pictures = this.props.pictures.map((picture, index) => {
+    const newPic = this.props.pictures.sort((a, b) => {
+      return (b.created - a.created);
+    })
+
+    const newPictures = newPic.map((picture, index) => {
       return (
       <div key={index} className="image">
           <Link to={`/pic/${picture.id}`}>
+            <p>{picture.title}</p>
             <img src={picture.src} alt={picture.alt}/>
           </Link>
       </div>
@@ -22,7 +27,7 @@ class Pictures extends React.Component {
 
     return (
       <div className="image-list">
-        {pictures}
+        {newPictures}
       </div>
     );
   }

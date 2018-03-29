@@ -62,28 +62,6 @@ export const fetchSinglePicture = pictureID => (dispatch, getState) => {
     .catch(err => {dispatch(fetchPicturesError(err))});
 }
 
-export const updateItem = (newItem, pictureID) => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
-  dispatch(fetchPicturesRequest());
-  return fetch(`${API_BASE_URL}/pic/${pictureID}`, {
-    method: 'PUT',
-    body: JSON.stringify(newItem),
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        // Provide our auth token as credentials
-        Authorization: `Bearer ${authToken}`
-    }
-  })
-    .then(res => {
-      return res.json();
-    })
-    .then(picture => {
-      dispatch(fetchSinglePictureSuccess(picture));
-    })
-    .catch(err => {dispatch(fetchPicturesError(err))});
-}
-
 export const uploadPicture = picture => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/pic`, {
@@ -124,4 +102,41 @@ export const uploadPicture = picture => (dispatch, getState) => {
       );
     }
   })
+}
+
+export const updateItem = (newItem, pictureID) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(fetchPicturesRequest());
+  return fetch(`${API_BASE_URL}/pic/${pictureID}`, {
+    method: 'PUT',
+    body: JSON.stringify(newItem),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        // Provide our auth token as credentials
+        Authorization: `Bearer ${authToken}`
+    }
+  })
+    .then(res => {
+      return res.json();
+    })
+    .then(picture => {
+      dispatch(fetchSinglePictureSuccess(picture));
+    })
+    .catch(err => {dispatch(fetchPicturesError(err))});
+}
+
+export const deleteItem = (pictureID) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(fetchPicturesRequest());
+  return fetch(`${API_BASE_URL}/pic/${pictureID}`, {
+    method: 'DELETE',
+    headers: {
+        Authorization: `Bearer ${authToken}`
+    }
+  })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => {dispatch(fetchPicturesError(err))});
 }

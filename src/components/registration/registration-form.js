@@ -1,83 +1,73 @@
 import React from 'react';
-import {reduxForm, focus} from 'redux-form';
-
-import AccountFields from './accountfields';
-import Confirmation from './confirmation';
-import Success from './success';
-
-import {registerUser} from '../../actions/registration';
+import {Field, reduxForm, focus} from 'redux-form';
+import {registerUser} from '../../actions/users';
 import {login} from '../../actions/auth';
-let userValues = {
-  fullname: null,
-  username: null,
-  email: null,
-  password: null,
-}
+import Input from './input';
+import {required, nonEmpty, matches, length, isTrimmed} from '../../validators';
+const passwordLength = length({min: 8, max: 72});
+const matchesPassword = matches('password');
 
-class RegistrationForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      step: 1
-    }
-  }
-
-  nextStep() {
-    this.setState({
-      step: this.state.step +1
-    })
-  }
-
-  previousStep() {
-    this.setState({
-      step: this.state.step -1
-    })
-  }
-
-  submitRegistration() {
-    return this.props.dispatch(registerUser(userValues))
-      .then(() => this.props.dispatch(login(userValues.username, userValues.password)))
-      .then(() => {
-        userValues = {
-          fullname: null,
-          username: null,
-          email: null,
-          password: null,
-        }
-      });
+export class RegistrationForm extends React.Component {
+  onSubmit(values) {
+    const {username, password, fullname, email} = values;
+    const user = {username, password, fullname, email};
+    return this.props
+      .dispatch(registerUser(user))
+      .then(() => this.props.dispatch(login(username, password)));
   }
 
   render() {
-    function saveValues(data) {
-      userValues = Object.assign({}, userValues, data);
-    }
-
-    if (this.state.step === 1) {
-      return <AccountFields
-        userValues={userValues}
-        saveValues={data => saveValues(data)}
-        nextStep={event => this.nextStep()}
-      />
-    } else if (this.state.step === 2) {
-      return <Confirmation 
-        userValues={userValues}
-        previousStep={event => this.previousStep()}
-        submitRegistration={event => {
-          this.submitRegistration();
-          this.nextStep();
-        }}
-      />
-    } else if (this.state.step === 3) {
-      return <Success 
-        userValues={userValues}
-      />
-    }
+    return (
+      <form
+        className="registration-form"
+        onSubmit={this.props.handleSubmit(values =>
+          this.onSubmit(values)
+      )}>
+        <label htmlFor="fullname">Full Name</label>
+        <Field 
+          component={Input} 
+          type="text" 
+          name="fullname"
+          validate={[required, nonEmpty, isTrimmed]}
+        />
+        <label htmlFor="email">Email</label>
+        <Field 
+          component={Input} 
+          type="email" 
+          name="email" 
+          validate={[required, nonEmpty, isTrimmed]}
+        />
+        <label htmlFor="username">Username</label>
+        <Field
+          component={Input}
+          type="text"
+          name="username"
+          validate={[required, nonEmpty, isTrimmed]}
+        />
+        <label htmlFor="password">Password</label>
+        <Field
+          component={Input}
+          type="password"
+          name="password"
+          validate={[required, passwordLength, isTrimmed]}
+        />
+        <label htmlFor="confirm password">Confirm password</label>
+        <Field
+          component={Input}
+          type="password"
+          name="confirm password"
+          validate={[required, nonEmpty, matchesPassword]}
+        />
+        <button type="submit">
+          Register
+        </button>
+      </form>
+  );
   }
 }
 
 export default reduxForm({
-  form: 'registration',
-  onSubmitFail: (errors, dispatch) =>
-      dispatch(focus('registration', Object.keys(errors)[0]))
+    form: 'registration',
+    onSubmitFail: (errors, dispatch) =>
+        dispatch(focus('registration', Object.keys(errors)[0]))
 })(RegistrationForm);

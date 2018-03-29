@@ -3,30 +3,17 @@ img {
 }
 
 .image-list {
-  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: auto;
   width: 80%;
-  column-count: 4;
 }
 
-.image-list div {
-  margin: 10px 0;
-  display: inline-block;
-}
-
-.image-list div:nth-child(1n) {
-  height: 300px;
-}
-
-.image-list div:nth-child(4n-5) {
-  height: 200px;
-}
-
-.image-list div:nth-child(2n) {
-  height: 350px;
-}
-
-.image-list div:nth-child(3n) {
-  height: 250px;
+.image {
+  width: 30%;
+  height: 275px;
+  margin: 20px 0;
 }
 
 .single-picture-container {
@@ -34,10 +21,15 @@ img {
   height: 100vh;
   margin: 0 auto;
   display: flex;
+  justify-content: center;
 }
 
-.single-picture-container span {
-  height: 610px;
+.picture {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 700px;
+  width: 50%;
   padding: 15px;
   margin-top: 100px;
   margin-right: 20px;
@@ -46,34 +38,34 @@ img {
 }
 
 .image-container {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 550px;
   border: 2px solid #000;
 }
 
-.single-picture-container span p {
+.picture p {
   margin: 5px 0;
 }
 
-.single-picture-container span button {
+.picture a {
+  font-weight: 600;
+}
+
+.picture button {
   float: right;
   margin-left: 10px;
 }
 
-.single-picture-container div {
-  margin: 10px 0;
-}
-
-.single-picture-container .comment-section {
+.comment-section {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 610px;
-  width: 100%;
+  height: 700px;
+  width: 50%;
   margin-top: 100px;
 }
 
-.single-picture-container .comment-section div {
+.comment-section div {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -81,14 +73,111 @@ img {
   padding: 5px 10px;
   border: 1px solid #000;
   border-radius: 5px;
+  overflow: auto;
 }
 
-.single-picture-container .comment-section form {
+.comment-section form {
   display: flex;
 }
 
-.single-picture-container .comment-section input {
+.comment-section input {
   width: 100%;
   padding: 5px;
   margin-right: 5px;
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 1440px) {
+  .single-picture-container {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .image {
+    width: 45%;
+  }
+
+  .picture {
+    width: 70%;
+    height: 500px;
+  }
+
+  .image-container {
+    height: 350px;
+  }
+
+  .comment-section {
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .single-picture-container {
+    flex-wrap: wrap;
+  }
+
+  .picture {
+    width: 95%;
+    height: 600px;
+    margin-right: 0;
+  }
+
+  .image-container {
+    height: 450px;
+  }
+
+  .comment-section {
+    width: 95%;
+    height: 400px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .image {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .image {
+    width: 100%;
+  }
+
+  .picture {
+    width: 95%;
+    height: 500px;
+  }
+
+  .picture button {
+    width: 65px;
+  }
+
+  .image-container {
+    height: 350px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .image {
+    height: 200px;
+  }
+
+  .picture {
+    width: 95%;
+    height: 400px;
+  }
+
+  .picture button {
+    width: 50px;
+  }
+
+  .image-container {
+    height: 250px;
+  }
+
+  .comment-section {
+    height: 300px;
+  }
 }

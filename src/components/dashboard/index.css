@@ -1,0 +1,49 @@
+.navigationButtons {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.navigationButtons button {
+  width: 75px;
+  margin: 0 20px;
+  margin-top: 30px;
+  padding-top: 7px;
+  border-radius: 0;
+  background-color: transparent;
+  color: #333;
+  outline: 0;
+}
+
+.currentButton {
+  border-bottom: 3px solid black;
+}
+
+.hideUnderline {
+  border-bottom: none;
+}
+
+.navigationButtons button:hover {
+  background-color: transparent;
+}
+
+.navigationButtons button:after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 0;
+  margin-top: 5px;
+  background-color: transparent;
+  transition: width 0.5s ease, background-color 0.5s ease; 
+}
+
+.navigationButtons button:hover:after {
+  width: 100%;
+  background: #333; 
+}
+
+@media only screen and (max-width: 768px) {
+  .navigationButtons button {
+    margin: 0 10px;
+    margin-top: 30px;
+  }
+}
