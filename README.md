@@ -16,4 +16,4 @@ Backend
   * Mongoose
   * MongoDB
 
-![alt text](https://github.com/Chrisyango/WIP-client/blob/master/public/images/wip.jpg)
+![alt text](https://github.com/Chrisyango/WIP-client/blob/master/public/images/wip.png)
