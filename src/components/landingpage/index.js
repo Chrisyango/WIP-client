@@ -17,7 +17,7 @@ export class LandingPage extends React.Component {
       <div className="landing-page">
         <div className="overlay"></div>
         <div className="overlay-content">
-          <h1>WorkInProgress</h1>
+          <h1>WIP</h1>
           <h2>Share your moments with the world</h2>
         </div>
         <Description />

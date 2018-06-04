@@ -30,7 +30,7 @@ export class User extends React.Component {
       <div className="user">
         {userInfo}
         <span className="userPosts">
-          <h2>User Posts</h2>
+          <h2>My Posts</h2>
           <YourPosts postsUsername={this.props.match.params.username}/>
         </span>
       </div>
