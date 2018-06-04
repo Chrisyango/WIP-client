@@ -16,4 +16,11 @@ Backend
   * Mongoose
   * MongoDB
 
+### Login
 ![alt text](https://github.com/Chrisyango/WIP-client/blob/master/public/images/wip.png)
+
+### Browse pictures
+![alt text](https://github.com/Chrisyango/WIP-client/blob/master/public/images/wip-nav.png)
+
+### Upload your own!
+![alt text](https://github.com/Chrisyango/WIP-client/blob/master/public/images/upload.jpg)
