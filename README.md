@@ -14,27 +14,27 @@ password: demo1234
 
 POST https://workinprogress-cyang.herokuapp.com/api/users
 
-### Login
+#### Login
 
 POST https://workinprogress-cyang.herokuapp.com/api/login
 
-### Get Pictures
+#### Get Pictures
 
 GET https://workinprogress-cyang.herokuapp.com/api/pic
 
-### Get Single Picture
+#### Get Single Picture
 
 GET https://workinprogress-cyang.herokuapp.com/api/pic/:id
 
-### Upload a Picture
+#### Upload a Picture
 
 POST https://workinprogress-cyang.herokuapp.com/api/pic
 
-### Update Picture Details
+#### Update Picture Details
 
 PUT https://workinprogress-cyang.herokuapp.com/api/pic/:id
 
-### Delete a Picture
+#### Delete a Picture
 
 DELETE https://workinprogress-cyang.herokuapp.com/api/pic/:id
 
