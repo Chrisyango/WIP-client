@@ -4,8 +4,10 @@ I love video games and I wanted a website for gamers to share their epic moments
 # Visit the App
 A deployed version of the app: https://wip287.netlify.com/
 
-Feel free to register, but here's a demo account if you don't want to: 
+Feel free to register, but here's a demo account if you don't want to:
+
 username: demo
+
 password: demo1234
 
 # API
