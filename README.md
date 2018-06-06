@@ -11,24 +11,31 @@ password: demo1234
 # API
 
 Create a User
+
 POST https://workinprogress-cyang.herokuapp.com/api/users
 
 Login
+
 POST https://workinprogress-cyang.herokuapp.com/api/login
 
 Get Pictures
+
 GET https://workinprogress-cyang.herokuapp.com/api/pic
 
 Get Single Picture
+
 GET https://workinprogress-cyang.herokuapp.com/api/pic/:id
 
 Upload a Picture
+
 POST https://workinprogress-cyang.herokuapp.com/api/pic
 
 Update Picture Details
+
 PUT https://workinprogress-cyang.herokuapp.com/api/pic/:id
 
 Delete a Picture
+
 DELETE https://workinprogress-cyang.herokuapp.com/api/pic/:id
 
 # Technology Stack
